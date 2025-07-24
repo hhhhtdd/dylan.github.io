@@ -40,16 +40,16 @@ function loadContent(type) {
 function displayMedia(container, items, type) {
     if (!container) return;
     
-    let html = '';
-    if (items && Array.isArray(items) && items.length > 0) {
-        items.forEach(item => {
+    const html = !items || !Array.isArray(items) || items.length === 0 
+        ? '<div style="color: white; text-align: center; grid-column: 1/-1; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px;">暂无内容</div>'
+        : items.map(item => {
             const imagePath = `data/${type}/${item.image || 'placeholder.jpg'}`;
-            html += `
+            return `
                 <div class="content-item" style="padding: 10px; margin: 5px;">
                     <img src="${imagePath}" alt="${item.title || '无标题'}" class="content-image" 
-                         style="width: 100px; height: auto;"  // 调整图片宽度，高度自适应
-                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\"">
-                    <div class="content-info" style="font-size: 0.9em;">  // 减小字体大小
+                        style="width: 100px; height: auto;" 
+                        onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=text-align:center;padding:10px;>图片加载失败</p>';this.remove()">
+                    <div class="content-info" style="font-size: 0.9em;">
                         <h3>${item.title || '无标题'}</h3>
                         ${item.description ? `<p>${item.description}</p>` : ''}
                         ${item.year ? `<p><strong>发行时间:</strong> ${item.year}</p>` : ''}
@@ -57,10 +57,8 @@ function displayMedia(container, items, type) {
                     </div>
                 </div>
             `;
-        });
-    } else {
-        html = '<p style="color: white; text-align: center; grid-column: 1/-1; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px;">暂无内容</p>';
-    }
+        }).join('');
+    
     container.innerHTML = html;
 }
 
