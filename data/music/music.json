@@ -27,5 +27,19 @@
         "year": "1999",
         "description": "Moya",
         "image": "Slow Riot for New Zero Kanada.jpg"
+    },
+    {
+        "title": "LAST WALTZ",
+        "author": "World's End Girlfriend",
+        "year": "2016",
+        "description": "漂亮的封面",
+        "image": "lastwaltz.jpg"
+    },
+    {
+        "title": "Great North",
+        "author": "Fourteen Nights At Sea",
+        "year": "2013",
+        "description": "大象",
+        "image": "greatnorth.jpg"
     }
 ]
