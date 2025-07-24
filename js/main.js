@@ -46,20 +46,25 @@ function displayMedia(container, items, type) {
             gap: '20px',     // 网格项间距
             padding: '20px'  // 容器内边距
         },
-        item: {      // 单个媒体项样式
-            padding: '30px',       // 内边距
-            margin: '20px',         // 外边距
-            background: 'rgba(255,255,255,0.2)', // 半透明白色背景
-            borderRadius: '8px'    // 圆角半径
+        item: {      // 修改为flex横向布局
+            display: 'flex',        // 启用flex布局
+            gap: '15px',            // 图片和文字间距
+            padding: '15px',
+            margin: '10px',
+            background: 'rgba(255,255,255,0.2)',
+            borderRadius: '8px'
         },
-        image: {     // 图片样式
-            width: '50%',   // 响应式宽度（占满容器）
-            height: 'auto',  // 保持原始宽高比
-            borderRadius: '8px' // 图片圆角
+        image: {     // 调整图片容器比例
+            width: '120px',         // 固定图片宽度
+            minWidth: '120px',      // 防止图片被压缩
+            height: '180px',        // 固定高度
+            objectFit: 'cover',     // 保持图片比例
+            borderRadius: '4px'
         },
-        info: {      // 文字信息区域样式
-            fontSize: '0.9em',   // 字体大小（相对单位）
-            padding: '10px 0'    // 上下内边距
+        info: {      // 文字区域自适应
+            flex: 1,                // 占据剩余空间
+            fontSize: '0.9em',
+            padding: '0 10px'       // 左右内边距
         },
         empty: `/* 保持原有空白提示样式不变 */`
     };
