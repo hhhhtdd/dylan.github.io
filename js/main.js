@@ -154,8 +154,8 @@ function initStyles() {
             width: auto;
         }
         .image-item img {
-            height: 100%;
-            width: 100%;
+            height: 50%;
+            width: 50%;
             object-fit: contain;
         }
         .info-modal {
@@ -163,7 +163,7 @@ function initStyles() {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.9);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             padding: 20px;
             border-radius: 8px;
