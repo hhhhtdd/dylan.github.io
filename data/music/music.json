@@ -6,6 +6,20 @@
         "year": "2000",
         "description": "黑帝最佳",
         "image": "1.jpg"
+    },
+    {
+        "title": "八匹马",
+        "author": "惘闻",
+        "year": "2014",
+        "description": "",
+        "image": "bapima.jpg"
+    },
+    {
+        "title": "Pornography",
+        "author": "The Cure",
+        "year": "1982",
+        "description": "最伤心的声音",
+        "image": "pornography.jpg"
     }
 ]
 
