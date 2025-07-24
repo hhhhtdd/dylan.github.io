@@ -134,6 +134,20 @@ function loadContent(type) {
 function initStyles() {
     const style = document.createElement('style');
     style.textContent = `
+        /* 新增随笔样式 */
+        .essay-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .essay-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
@@ -151,7 +165,7 @@ function initStyles() {
         }
         .image-item.rectangle {
             height: 240px;
-            width: auto;
+            width: 240px;
         }
         .image-item img {
             height: 50%;
@@ -172,6 +186,46 @@ function initStyles() {
         }
     `;
     document.head.appendChild(style);
+}
+
+// 新增创建随笔项的函数
+function createEssayItem(essay) {
+    const div = document.createElement('div');
+    div.className = 'essay-item';
+    div.innerHTML = `
+        <h3>${essay.title || '无标题'}</h3>
+        <div class="essay-date">${essay.date || '未知日期'}</div>
+        <div class="essay-content">${essay.content || '暂无内容'}</div>
+    `;
+    return div;
+}
+
+// 修改loadContent函数
+function loadContent(type) {
+    fetch(`data/${type}/${type}.json`)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+            
+            if(type === 'essays') {
+                container.classList.add('essay-container');
+                data.sort(() => Math.random() - 0.5)
+                   .forEach(essay => {
+                       container.appendChild(createEssayItem(essay));
+                   });
+            } else {
+                container.classList.add('gallery-container');
+                data.sort(() => Math.random() - 0.5)
+                   .forEach(item => {
+                       container.appendChild(createImageItem(item, type));
+                   });
+            }
+        })
+        .catch(error => {
+            console.error('加载失败:', error);
+            container.innerHTML = `<div class="error">数据加载失败</div>`;
+        });
 }
 
 // 创建图片容器
