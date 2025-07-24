@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('../data/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 50px;
+    padding-top: 50px;
+}
+
+/* 主页导航网格 - 去掉白色背景填充 */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* 移除 .nav-item 可能存在的毛玻璃效果 */
+.nav-item {
+    /* 移除 backdrop-filter 属性 */
+    backdrop-filter: none; 
+    /* 移除或修改 background 属性 */
+    background: none; 
+    /* 若有 box-shadow 也可移除 */
+    box-shadow: none; 
+}
+
+/* 移除 .nav-content 可能存在的毛玻璃效果 */
+.nav-content {
+    backdrop-filter: none;
+    background: none;
+    box-shadow: none;
+}
+
+/* 若有悬停状态的毛玻璃效果，也一并移除 */
+.nav-item:hover {
+    backdrop-filter: none;
+    background: none;
+    box-shadow: none;
+}
+
+.nav-item:hover {
+    background: transparent !important;  /* 强制去掉悬停背景 */
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.2); /* 悬停时轻微的背景 */
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.nav-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white; /* 改为白色文字 */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 添加文字阴影提高可读性 */
+}
+
+.nav-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9); /* 白色半透明文字 */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 添加文字阴影 */
+}
+
+/* 内容页面样式 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    /* 去掉背景色，改为透明背景 */
+    background: transparent;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+    border-color: white;
+}
+
+/* 内容网格 */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.content-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.content-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.content-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.content-info {
+    padding: 20px;
+}
+
+.content-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.content-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 随笔列表样式 */
+.content-list {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.essay-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.essay-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.essay-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.essay-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.essay-content {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+        padding-top: 20px;
+    }
+    
+    .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+}

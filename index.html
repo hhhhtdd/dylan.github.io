@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+
+        <div class="center-content">
+            <div class="nav-grid">
+                <a href="books.html" class="nav-item">
+                    <div class="nav-content">
+                        <h2>📚</h2>
+                    </div>
+                </a>
+                <a href="movies.html" class="nav-item">
+                    <div class="nav-content">
+                        <h2>🎬</h2>
+                    </div>
+                </a>
+                <a href="music.html" class="nav-item">
+                    <div class="nav-content">
+                        <h2>🎵</h2>
+                    </div>
+                </a>
+                <a href="photos.html" class="nav-item">
+                    <div class="nav-content">
+                        <h2>📷</h2>
+                    </div>
+                </a>
+                <a href="essays.html" class="nav-item">
+                    <div class="nav-content">
+                        <h2>📝</h2>
+                    </div>
+                </a>
+            </div>
+            <footer class="footer-quote">
+                <h1 class="main-title">
+                    世界要你努力考取功名<br>
+                    但是真诚才是最大本领
+                </h1>
+            </footer>
+        </div>
+
+        <style>
+        .center-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100vw;
+            z-index: 200;
+        }
+        .footer-quote {
+            text-align: center;
+            background: transparent;
+            padding: 1rem 0 0.5rem 0;
+            width: 100%;
+        }
+        .footer-quote .main-title,
+        .main-title {
+            font-family: 'SimSun', serif;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .nav-grid {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+        .nav-item {
+            text-decoration: none;
+        }
+        .nav-content h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        </style>
+    </div>
+</body>
+</html>

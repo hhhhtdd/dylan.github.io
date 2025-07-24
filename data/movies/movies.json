@@ -1,0 +1,14 @@
+[
+    {
+        "title": "肖申克的救赎",
+        "year": "1994",
+        "description": "一部关于希望与自由的经典电影",
+        "image": "movie1.jpg"
+    },
+    {
+        "title": "阿甘正传",
+        "year": "1994",
+        "description": "人生就像一盒巧克力",
+        "image": "movie2.jpg"
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "title": "《百年孤独》",
+        "author": "加西亚·马尔克斯",
+        "year": "1967",
+        "description": "魔幻现实主义的经典之作",
+        "image": "book1.jpg"
+    },
+    {
+        "title": "《1984》",
+        "author": "乔治·奥威尔",
+        "year": "1949",
+        "description": "反乌托邦小说的代表作",
+        "image": "book2.jpg"
+    }
+]
