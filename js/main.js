@@ -42,13 +42,14 @@ function displayMedia(container, items, type) {
     
     let html = '';
     if (items && Array.isArray(items) && items.length > 0) {
-        items.forEach((item, index) => {
+        items.forEach(item => {
             const imagePath = `data/${type}/${item.image || 'placeholder.jpg'}`;
             html += `
-                <div class="content-item">
+                <div class="content-item" style="padding: 10px; margin: 5px;">
                     <img src="${imagePath}" alt="${item.title || '无标题'}" class="content-image" 
-                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\"
-                    <div class="content-info">
+                         style="width: 100px; height: auto;"  // 调整图片宽度，高度自适应
+                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\"">
+                    <div class="content-info" style="font-size: 0.9em;">  // 减小字体大小
                         <h3>${item.title || '无标题'}</h3>
                         ${item.description ? `<p>${item.description}</p>` : ''}
                         ${item.year ? `<p><strong>发行时间:</strong> ${item.year}</p>` : ''}
