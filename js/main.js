@@ -47,12 +47,12 @@ function displayMedia(container, items, type) {
             html += `
                 <div class="content-item">
                     <img src="${imagePath}" alt="${item.title || '无标题'}" class="content-image" 
-                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\">图片加载失败</p>'">
+                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\"
                     <div class="content-info">
                         <h3>${item.title || '无标题'}</h3>
                         ${item.description ? `<p>${item.description}</p>` : ''}
-                        ${item.year ? `<p><strong>年份:</strong> ${item.year}</p>` : ''}
-                        ${item.author ? `<p><strong>作者:</strong> ${item.author}</p>` : ''}
+                        ${item.year ? `<p><strong>发行时间:</strong> ${item.year}</p>` : ''}
+                        ${item.author ? `<p><strong>音乐人:</strong> ${item.author}</p>` : ''}
                     </div>
                 </div>
             `;
