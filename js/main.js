@@ -78,21 +78,23 @@ function initStyles() {
             border-bottom: 1px solid #eee;
         }
         .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
+            justify-items: center;
         }
         .image-item {
+            width: 120px;
+            height: 120px;
             cursor: pointer;
-            width: 240px;
-            height: 240px;
             background: transparent !important;
         }
         .image-item img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 8px;
         }
         .info-modal {
             position: fixed;
@@ -105,6 +107,14 @@ function initStyles() {
             border-radius: 8px;
             max-width: 400px;
             display: none;
+        }
+        .error {
+            color: white; 
+            text-align: center; 
+            background: rgba(0,0,0,0.3); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px;
         }
     `;
     document.head.appendChild(style);
