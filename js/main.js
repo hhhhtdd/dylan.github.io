@@ -47,7 +47,7 @@ function displayMedia(container, items, type) {
             return `
                 <div class="content-item" style="padding: 10px; margin: 5px;">
                     <img src="${imagePath}" alt="${item.title || '无标题'}" class="content-image" 
-                        style="width: 100px; height: auto;" 
+                        style="width: 300px; height: auto;" 
                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=text-align:center;padding:10px;>图片加载失败</p>';this.remove()">
                     <div class="content-info" style="font-size: 0.9em;">
                         <h3>${item.title || '无标题'}</h3>
