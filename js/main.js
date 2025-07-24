@@ -9,7 +9,7 @@ function loadContent(type) {
             container.innerHTML = '';
             container.className = type === 'essays' ? 'essay-container' : 'gallery-container';
             
-            // 随机排序
+            // 随机排序数据
             data.sort(() => Math.random() - 0.5);
             
             if (type === 'essays') {
@@ -39,7 +39,7 @@ function loadContent(type) {
         });
 }
 
-// 显示详细信息
+// 显示详细信息弹窗
 function showItemInfo(item) {
     const modal = document.getElementById('info-modal') || createInfoModal();
     modal.innerHTML = `
@@ -52,7 +52,7 @@ function showItemInfo(item) {
     modal.style.display = 'block';
 }
 
-// 创建信息弹窗
+// 创建信息弹窗元素
 function createInfoModal() {
     const modal = document.createElement('div');
     modal.id = 'info-modal';
@@ -61,52 +61,52 @@ function createInfoModal() {
     return modal;
 }
 
-// 初始化样式
+// 初始化CSS样式
 function initStyles() {
     const style = document.createElement('style');
     style.textContent = `
         .essay-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 12px;
+            max-width: 800px;           /* 随笔容器最大宽度 */
+            margin: 0 auto;             /* 居中显示 */
+            padding: 30px;              /* 内边距 */
+            background: rgba(255,255,255,0.4);  /* 半透明白色背景 */
+            border-radius: 12px;        /* 圆角边框 */
         }
         .essay-item {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;        /* 随笔项底部间距 */
+            padding: 20px;              /* 内边距 */
+            border-bottom: 1px solid #eee;  /* 底部分割线 */
         }
         .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            justify-items: center;
+            display: grid;                          /* 网格布局 */
+            grid-template-columns: repeat(6, 1fr);  /* 6列等宽网格 */
+            gap: 20px;                              /* 网格间距20px */
+            padding: 20px;                          /* 容器内边距 */
+            justify-items: center;                  /* 网格项水平居中 */
         }
         .image-item {
-            width: 120px;
-            height: 120px;
-            cursor: pointer;
-            background: transparent !important;
+            width: 120px;               /* 固定宽度120px */
+            height: 120px;              /* 固定高度120px */
+            cursor: pointer;            /* 鼠标悬停手势 */
+            background: transparent !important;  /* 透明背景 */
         }
         .image-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
+            width: 100%;                /* 图片占满容器宽度 */
+            height: 100%;               /* 图片占满容器高度 */
+            object-fit: cover;          /* 保持比例裁剪填充 */
+            border-radius: 20px;         /* 图片圆角 */
         }
         .info-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 400px;
-            display: none;
+            position: fixed;            /* 固定定位 */
+            top: 50%;                   /* 距离顶部50% */
+            left: 50%;                  /* 距离左侧50% */
+            transform: translate(-50%, -50%);  /* 居中定位 */
+            background: rgba(255, 255, 255, 0.2);  /* 半透明背景 */
+            color: white;               /* 白色文字 */
+            padding: 20px;              /* 内边距 */
+            border-radius: 20px;         /* 圆角 */
+            max-width: 400px;           /* 最大宽度 */
+            display: none;              /* 默认隐藏 */
         }
         .error {
             color: white; 
