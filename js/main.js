@@ -49,11 +49,11 @@ function displayMedia(container, items, type) {
         item: {      // 单个媒体项样式
             padding: '10px',       // 内边距
             margin: '5px',         // 外边距
-            background: 'rgba(255,255,255,0.1)', // 半透明白色背景
+            background: 'rgba(255,255,255,0.2)', // 半透明白色背景
             borderRadius: '8px'    // 圆角半径
         },
         image: {     // 图片样式
-            width: '100%',   // 响应式宽度（占满容器）
+            width: '50%',   // 响应式宽度（占满容器）
             height: 'auto',  // 保持原始宽高比
             borderRadius: '4px' // 图片圆角
         },
