@@ -40,31 +40,31 @@ function loadContent(type) {
 function displayMedia(container, items, type) {
     // 样式配置对象
     const contentStyles = {
-        container: { // 网格容器样式
-            display: 'grid', // 使用CSS网格布局
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', // 自适应列宽（最小320px）
-            gap: '20px',     // 网格项间距
-            padding: '20px'  // 容器内边距
+        container: { 
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '20px',
+            padding: '20px'
         },
-        item: {      // 修改为flex横向布局
-            display: 'flex',        // 启用flex布局
-            gap: '15px',            // 图片和文字间距
+        item: {
+            display: 'flex',
+            gap: '15px',
             padding: '15px',
             margin: '10px',
             background: 'rgba(255,255,255,0.2)',
             borderRadius: '8px'
         },
-        image: {     // 调整图片容器比例
-            width: '120px',         // 固定图片宽度
-            minWidth: '120px',      // 防止图片被压缩
-            height: '180px',        // 固定高度
-            objectFit: 'cover',     // 保持图片比例
+        image: { // 根据类型动态设置尺寸
+            width: type === 'music' ? '200px' : '120px',
+            minWidth: type === 'music' ? '200px' : '120px',
+            height: type === 'music' ? '200px' : '180px',
+            objectFit: 'cover',
             borderRadius: '4px'
         },
-        info: {      // 文字区域自适应
-            flex: 1,                // 占据剩余空间
+        info: {
+            flex: 1,
             fontSize: '0.9em',
-            padding: '0 10px'       // 左右内边距
+            padding: '0 10px'
         },
         empty: `/* 保持原有空白提示样式不变 */`
     };
