@@ -134,113 +134,110 @@ function loadContent(type) {
 function initStyles() {
     const style = document.createElement('style');
     style.textContent = `
-        .random-image {
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .image-item {
             cursor: pointer;
-            position: absolute;
             transition: transform 0.2s;
-            transform: scale(0.3);
+            background: transparent !important;
         }
-        .random-image:hover {
-            transform: scale(0.31);
-            z-index: 999;
+        .image-item.square {
+            width: 240px;
+            height: 240px;
         }
-        .info-tooltip {
+        .image-item.rectangle {
+            height: 240px;
+            width: auto;
+        }
+        .image-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+        .info-modal {
             position: fixed;
-            background: rgba(0,0,0,0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
             color: white;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 300px;
-            pointer-events: none;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            display: none;
         }
     `;
     document.head.appendChild(style);
 }
 
-// 获取随机位置
-function getRandomPosition(imgWidth, imgHeight) {
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    return {
-        left: Math.random() * (viewportWidth - imgWidth * 0.3),
-        top: Math.random() * (viewportHeight - imgHeight * 0.3)
-    };
-}
-
-// 创建图片元素
-function createImageElement(item, type) {
+// 创建图片容器
+function createImageItem(item, type) {
+    const container = document.createElement('div');
     const img = document.createElement('img');
-    img.className = 'random-image';
-    img.src = `data/${type}/${item.image}`;
-    img.dataset.info = JSON.stringify({
-        title: item.title,
-        desc: item.description,
-        year: item.year,
-        author: item.author
-    });
-
-    // 设置随机位置
-    const naturalSize = new Promise(resolve => {
-        img.onload = () => resolve({ 
-            width: img.naturalWidth, 
-            height: img.naturalHeight 
-        });
-    });
     
-    naturalSize.then(({width, height}) => {
-        const pos = getRandomPosition(width, height);
-        Object.assign(img.style, {
-            left: `${pos.left}px`,
-            top: `${pos.top}px`
-        });
-    });
+    // 设置图片源
+    img.src = `data/${type}/${item.image}`;
+    img.alt = item.title || '无标题';
 
-    return img;
+    // 图片加载后判断比例
+    img.onload = function() {
+        const isSquare = Math.abs(this.naturalWidth - this.naturalHeight) < 10;
+        container.classList.add(isSquare ? 'square' : 'rectangle');
+    };
+
+    // 点击事件处理
+    container.addEventListener('click', () => showItemInfo(item));
+    container.appendChild(img);
+    return container;
 }
 
-// 初始化工具提示
-function initTooltip() {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'info-tooltip';
-    document.body.appendChild(tooltip);
-    return tooltip;
+// 显示详细信息
+function showItemInfo(item) {
+    const modal = document.getElementById('info-modal') || createInfoModal();
+    modal.innerHTML = `
+        <h3>${item.title || '无标题'}</h3>
+        ${item.description ? `<p>${item.description}</p>` : ''}
+        ${item.year ? `<p>发行年份: ${item.year}</p>` : ''}
+        ${item.author ? `<p>作者: ${item.author}</p>` : ''}
+        <button onclick="this.parentElement.style.display='none'">关闭</button>
+    `;
+    modal.style.display = 'block';
 }
 
-// 加载内容（修改后的版本）
+// 创建信息弹窗
+function createInfoModal() {
+    const modal = document.createElement('div');
+    modal.className = 'info-modal';
+    document.body.appendChild(modal);
+    return modal;
+}
+
+// 加载内容
 function loadContent(type) {
     fetch(`data/${type}/${type}.json`)
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('content');
             container.innerHTML = '';
-            
-            // 随机排序
-            const shuffledItems = data.sort(() => Math.random() - 0.5);
-            
-            // 创建并添加图片元素
-            shuffledItems.forEach(item => {
-                const img = createImageElement(item, type);
-                container.appendChild(img);
-            });
+            container.classList.add('gallery-container');
 
-            // 初始化工具提示
-            const tooltip = initTooltip();
-            document.querySelectorAll('.random-image').forEach(img => {
-                img.addEventListener('click', (e) => {
-                    const info = JSON.parse(img.dataset.info);
-                    tooltip.innerHTML = `
-                        <h3>${info.title || '无标题'}</h3>
-                        ${info.desc ? `<p>${info.desc}</p>` : ''}
-                        ${info.year ? `<p>年份: ${info.year}</p>` : ''}
-                        ${info.author ? `<p>作者: ${info.author}</p>` : ''}
-                    `;
-                    tooltip.style.left = `${e.pageX + 15}px`;
-                    tooltip.style.top = `${e.pageY + 15}px`;
-                });
-            });
+            // 随机排序并创建元素
+            data.sort(() => Math.random() - 0.5)
+               .forEach(item => {
+                   container.appendChild(createImageItem(item, type));
+               });
         })
-        .catch(console.error);
+        .catch(error => {
+            console.error('加载失败:', error);
+            document.getElementById('content').innerHTML = `
+                <div class="error">数据加载失败，请刷新重试</div>
+            `;
+        });
 }
 
-// 初始化样式
+// 初始化
 initStyles();
