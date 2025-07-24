@@ -1,18 +1,19 @@
 // 加载内容的函数
 function loadContent(type) {
-    console.log('尝试加载类型:', type);
-    console.log('请求路径:', `data/${type}/${type}.json`);
+    // 对于GitHub Pages，使用相对路径
+    const basePath = window.location.pathname.includes('github.io') ? '/personal-website/' : '/';
+    const jsonPath = `data/${type}/${type}.json`;
     
-    fetch(`data/${type}/${type}.json`)
+    console.log('尝试加载:', jsonPath);
+    
+    fetch(jsonPath)
         .then(response => {
-            console.log('响应状态:', response.status);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            console.log('加载的数据:', data);
             const contentDiv = document.getElementById('content');
             if (type === 'essays') {
                 displayEssays(contentDiv, data);
@@ -25,34 +26,31 @@ function loadContent(type) {
             const contentDiv = document.getElementById('content');
             if (contentDiv) {
                 contentDiv.innerHTML = `
-                    <div style="color: white; text-align: center; padding: 20px;">
-                        <h3>加载失败</h3>
+                    <div style="color: white; text-align: center; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 10px; margin: 20px;">
+                        <h3>❌ 加载失败</h3>
                         <p>错误信息: ${error.message}</p>
-                        <p>请检查以下内容：</p>
-                        <ul style="text-align: left; display: inline-block;">
-                            <li>文件路径: data/${type}/${type}.json</li>
-                            <li>JSON文件格式是否正确</li>
-                            <li>图片文件是否存在</li>
-                        </ul>
+                        <p>请稍后重试或检查数据文件</p>
                     </div>
                 `;
             }
         });
 }
 
-// 显示媒体内容（书籍、电影、音乐、照片）
+// 显示媒体内容
 function displayMedia(container, items, type) {
     if (!container) return;
     
     let html = '';
-    if (items && items.length > 0) {
-        items.forEach(item => {
+    if (items && Array.isArray(items) && items.length > 0) {
+        items.forEach((item, index) => {
+            const imagePath = `data/${type}/${item.image || 'placeholder.jpg'}`;
             html += `
                 <div class="content-item">
-                    <img src="data/${type}/${item.image}" alt="${item.title}" class="content-image" onerror="this.src='data/placeholder.jpg'">
+                    <img src="${imagePath}" alt="${item.title || '无标题'}" class="content-image" 
+                         onerror="this.onerror=null; this.parentElement.innerHTML+='<p style=\"text-align:center;padding:10px;\">图片加载失败</p>'">
                     <div class="content-info">
                         <h3>${item.title || '无标题'}</h3>
-                        <p>${item.description || '暂无描述'}</p>
+                        ${item.description ? `<p>${item.description}</p>` : ''}
                         ${item.year ? `<p><strong>年份:</strong> ${item.year}</p>` : ''}
                         ${item.author ? `<p><strong>作者:</strong> ${item.author}</p>` : ''}
                     </div>
@@ -60,7 +58,7 @@ function displayMedia(container, items, type) {
             `;
         });
     } else {
-        html = '<p style="color: white; text-align: center; grid-column: 1/-1;">暂无内容</p>';
+        html = '<p style="color: white; text-align: center; grid-column: 1/-1; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px;">暂无内容</p>';
     }
     container.innerHTML = html;
 }
@@ -70,7 +68,7 @@ function displayEssays(container, essays) {
     if (!container) return;
     
     let html = '';
-    if (essays && essays.length > 0) {
+    if (essays && Array.isArray(essays) && essays.length > 0) {
         essays.forEach(essay => {
             html += `
                 <div class="essay-item">
@@ -81,7 +79,7 @@ function displayEssays(container, essays) {
             `;
         });
     } else {
-        html = '<p style="color: white; text-align: center;">暂无随笔</p>';
+        html = '<p style="color: white; text-align: center; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px;">暂无随笔</p>';
     }
     container.innerHTML = html;
 }
