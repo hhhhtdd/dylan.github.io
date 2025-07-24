@@ -37,77 +37,74 @@ function loadContent(type) {
 }
 
 // // 显示媒体内容
-// function displayMedia(container, items, type) {
-//     // 样式配置对象
-//     const contentStyles = {
-//         container: { 
-//             display: 'grid',
-//             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-//             gap: '20px',
-//             padding: '20px'
-//         },
-//         item: {
-//             display: 'flex',
-//             gap: '15px',
-//             padding: '15px',
-//             margin: '10px',
-//             background: 'rgba(255,255,255,0.2)',
-//             borderRadius: '8px'
-//         },
-//         image: { // 根据类型动态设置尺寸
-//             width: type === 'music' ? '200px' : '120px',
-//             minWidth: type === 'music' ? '200px' : '120px',
-//             height: type === 'music' ? '200px' : '180px',
-//             objectFit: 'cover',
-//             borderRadius: '4px'
-//         },
-//         info: {
-//             flex: 1,
-//             fontSize: '0.9em',
-//             padding: '0 10px'
-//         },
-//         empty: `/* 保持原有空白提示样式不变 */`
-//     };
+// 修改displayMedia函数中的样式配置
+function displayMedia(container, items, type) {
+    // 样式配置对象
+    const contentStyles = {
+        container: { 
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)', // 固定3列布局
+            gap: '20px',
+            padding: '20px',
+            justifyItems: 'center' // 内容居中对齐
+        },
+        item: {
+            width: '120px',       // 固定容器宽度
+            height: '120px'       // 固定容器高度
+        },
+        image: {
+            width: '100%',        // 图片宽度填满容器
+            height: '100%',       // 图片高度填满容器
+            objectFit: 'cover',   // 保持比例裁剪
+            borderRadius: '8px'
+        },
+        info: {
+            flex: 1,
+            fontSize: '0.9em',
+            padding: '0 10px'
+        },
+        empty: `/* 保持原有空白提示样式不变 */`
+    };
 
-//     const html = !items || !Array.isArray(items) || items.length === 0 
-//         ? contentStyles.empty 
-//         : `<div style="${cssToString(contentStyles.container)}">${items.map(item => {
-//             const imagePath = `data/${type}/${item.image || 'placeholder.jpg'}`;
-//             return `
-//                 <div class="content-item" style="${cssToString(contentStyles.item)}">
-//                     <img src="${imagePath}" 
-//                          alt="${item.title || '无标题'}" 
-//                          style="${cssToString(contentStyles.image)}"
-//                          onerror="handleImageError(this)">
-//                     <div class="content-info" style="${cssToString(contentStyles.info)}">
-//                         <h3>${item.title || '无标题'}</h3>
-//                         ${item.description ? `<p>${item.description}</p>` : ''}
-//                         ${item.year ? `<p><strong>发行时间:</strong> ${item.year}</p>` : ''}
-//                         ${item.author ? `<p><strong>By:</strong> ${item.author}</p>` : ''}
-//                     </div>
-//                 </div>
-//             `;
-//         }).join('')}</div>`;
+    const html = !items || !Array.isArray(items) || items.length === 0 
+        ? contentStyles.empty 
+        : `<div style="${cssToString(contentStyles.container)}">${items.map(item => {
+            const imagePath = `data/${type}/${item.image || 'placeholder.jpg'}`;
+            return `
+                <div class="content-item" style="${cssToString(contentStyles.item)}">
+                    <img src="${imagePath}" 
+                         alt="${item.title || '无标题'}" 
+                         style="${cssToString(contentStyles.image)}"
+                         onerror="handleImageError(this)">
+                    <div class="content-info" style="${cssToString(contentStyles.info)}">
+                        <h3>${item.title || '无标题'}</h3>
+                        ${item.description ? `<p>${item.description}</p>` : ''}
+                        ${item.year ? `<p><strong>发行时间:</strong> ${item.year}</p>` : ''}
+                        ${item.author ? `<p><strong>By:</strong> ${item.author}</p>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('')}</div>`;
     
-//     container.innerHTML = html;
+    container.innerHTML = html;
 
-//     // 新增样式处理函数
-//     function cssToString(styleObj) {
-//         return Object.entries(styleObj)
-//             .map(([key, value]) => `${key}:${value}`)
-//             .join(';');
-//     }
+    // 新增样式处理函数
+    function cssToString(styleObj) {
+        return Object.entries(styleObj)
+            .map(([key, value]) => `${key}:${value}`)
+            .join(';');
+    }
 
-//     // 图片错误处理统一方法
-//     function handleImageError(img) {
-//         img.onerror = null;
-//         const errorMsg = document.createElement('p');
-//         errorMsg.style = 'text-align:center; padding:10px; color:#ff9999;';
-//         errorMsg.textContent = '图片加载失败';
-//         img.parentElement.appendChild(errorMsg);
-//         img.remove();
-//     }
-// }
+    // 图片错误处理统一方法
+    function handleImageError(img) {
+        img.onerror = null;
+        const errorMsg = document.createElement('p');
+        errorMsg.style = 'text-align:center; padding:10px; color:#ff9999;';
+        errorMsg.textContent = '图片加载失败';
+        img.parentElement.appendChild(errorMsg);
+        img.remove();
+    }
+}
 
 // // 显示随笔内容
 // function displayEssays(container, essays) {
@@ -141,7 +138,7 @@ function initStyles() {
             padding: 30px;
             background: rgba(255,255,255,0.9);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
         }
         .essay-item {
             margin-bottom: 30px;
@@ -189,6 +186,7 @@ function initStyles() {
 }
 
 // 新增创建随笔项的函数
+// 在createEssayItem函数中保持纯文字输出
 function createEssayItem(essay) {
     const div = document.createElement('div');
     div.className = 'essay-item';
@@ -200,7 +198,7 @@ function createEssayItem(essay) {
     return div;
 }
 
-// 修改loadContent函数
+// 在loadContent中保持纯文字加载逻辑
 function loadContent(type) {
     fetch(`data/${type}/${type}.json`)
         .then(response => response.json())
@@ -212,6 +210,7 @@ function loadContent(type) {
                 container.classList.add('essay-container');
                 data.sort(() => Math.random() - 0.5)
                    .forEach(essay => {
+                       // 直接追加文字内容
                        container.appendChild(createEssayItem(essay));
                    });
             } else {

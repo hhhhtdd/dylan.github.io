@@ -232,3 +232,22 @@ body {
     border-radius: 8px;
     margin: 20px;
 }
+
+/* 音乐页面专用样式 */
+.music-page .gallery-container {
+    max-width: 480px; /* 120x3 + 20x2间隙 */
+    margin: 0 auto;
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .music-page .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .music-page .gallery-container {
+        grid-template-columns: 1fr;
+    }
+}
