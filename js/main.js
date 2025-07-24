@@ -85,8 +85,8 @@ function initStyles() {
             justify-items: center;                  /* 网格项水平居中 */
         }
         .image-item {
-            width: 120px;               /* 固定宽度120px */
-            height: 120px;              /* 固定高度120px */
+            width: 180px;               /* 固定宽度120px */
+            height: 180px;              /* 固定高度120px */
             cursor: pointer;            /* 鼠标悬停手势 */
             background: transparent !important;  /* 透明背景 */
         }
