@@ -263,9 +263,9 @@ body {
 }
 
 .footer-quote .main-title {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     text-align: center;
-    color: white;
+    color: rgba(255, 255, 255, 0.605);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     line-height: 1.5;
 }
