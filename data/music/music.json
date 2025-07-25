@@ -41,5 +41,13 @@
         "year": "2013",
         "description": "大象",
         "image": "greatnorth.jpg"
+    },
+    {
+        "title": "Diamond Life",
+        "author": "Sade",
+        "year": "1984",
+        "description": "fuse",
+        "image": "diamondlife.jpg"
     }
+    
 ]
