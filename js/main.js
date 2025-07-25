@@ -71,7 +71,7 @@ function initStyles() {
             top: 20px;
             right: 20px;
             color: #fff;
-            background: rgba(0, 119, 34, 0.7);
+            background: rgba(0, 119, 34, 0.25);
             padding: 8px 15px;
             border-radius: 15px;
             text-decoration: none;
