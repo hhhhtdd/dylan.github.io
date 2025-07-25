@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 新增自动播放逻辑 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!localStorage.getItem('userInteracted')) {
+            const audio = new Audio('music/hoppipolla.mp3'); // 请替换为实际音乐文件名
+            audio.play().catch(error => console.log('自动播放被浏览器阻止'));
+            
+            const handler = () => {
+                audio.pause();
+                localStorage.setItem('userInteracted', 'true');
+                document.removeEventListener('click', handler);
+            };
+            document.addEventListener('click', handler);
+        }
+    });
+    </script>
 </head>
 <body>
     <div class="container">
