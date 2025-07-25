@@ -71,9 +71,9 @@ function initStyles() {
             top: 20px;
             right: 20px;
             color: #fff;
-            background: rgba(0, 119, 34, 0.25);
+            background: rgba(22, 184, 68, 0.25);
             padding: 8px 15px;
-            border-radius: 15px;
+            border-radius: 4px;
             text-decoration: none;
             z-index: 1000;
             transition: background 0.3s;
