@@ -6,17 +6,20 @@
     <title>个人主页</title>
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- 新增自动播放逻辑 -->
+    <!-- 修改后的点击播放逻辑 -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (!localStorage.getItem('userInteracted')) {
-            const audio = new Audio('music/hoppipolla.mp3'); // 请替换为实际音乐文件名
-            audio.play().catch(error => console.log('自动播放被浏览器阻止'));
-            
+            const audio = new Audio('music/hoppipolla.mp3');
+            let played = false;
+
             const handler = () => {
-                audio.pause();
-                localStorage.setItem('userInteracted', 'true');
-                document.removeEventListener('click', handler);
+                if (!played) {
+                    audio.play().catch(error => console.log('播放需要用户交互'));
+                    localStorage.setItem('userInteracted', 'true');
+                    played = true;
+                    document.removeEventListener('click', handler);
+                }
             };
             document.addEventListener('click', handler);
         }
