@@ -79,7 +79,7 @@ function initStyles() {
             transition: background 0.3s;
         }
         .douban-link:hover {
-            background: #007722;
+            background: #33c45cff;
         }
         .essay-container {
             max-width: 800px;           /* 随笔容器最大宽度 */
