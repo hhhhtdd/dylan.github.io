@@ -65,6 +65,22 @@ function createInfoModal() {
 function initStyles() {
     const style = document.createElement('style');
     style.textContent = `
+        /* 豆瓣链接样式 */
+        .douban-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            background: rgba(0, 119, 34, 0.7);
+            padding: 8px 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .douban-link:hover {
+            background: #007722;
+        }
         .essay-container {
             max-width: 800px;           /* 随笔容器最大宽度 */
             margin: 0 auto;             /* 居中显示 */
