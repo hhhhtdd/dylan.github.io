@@ -26,7 +26,8 @@ function loadContent(type) {
             } else {
                 data.forEach(item => {
                     const div = document.createElement('div');
-                    div.className = 'image-item';
+                    // 根据类型使用不同类名
+                    div.className = type === 'movies' ? 'movie-item' : 'image-item';
                     div.innerHTML = `<img src="data/${type}/${item.image}" alt="${item.title || '无标题'}">`;
                     div.onclick = () => showItemInfo(item);
                     container.appendChild(div);
@@ -45,8 +46,8 @@ function showItemInfo(item) {
     modal.innerHTML = `
         <h3>${item.title || '无标题'}</h3>
         ${item.description ? `<p>${item.description}</p>` : ''}
-        ${item.year ? `<p>发行年份: ${item.year}</p>` : ''}
-        ${item.author ? `<p>作者: ${item.author}</p>` : ''}
+        ${item.year ? `<p>: ${item.year}</p>` : ''}
+        ${item.author ? `<p>: ${item.author}</p>` : ''}
         <button onclick="this.parentElement.style.display='none'">关闭</button>
     `;
     modal.style.display = 'block';
@@ -62,6 +63,7 @@ function createInfoModal() {
 }
 
 // 初始化CSS样式
+// 在initStyles函数中修改CSS部分
 function initStyles() {
     const style = document.createElement('style');
     style.textContent = `
@@ -94,23 +96,43 @@ function initStyles() {
             border-bottom: 1px solid #eee;  /* 底部分割线 */
         }
         .gallery-container {
-            display: grid;                          /* 网格布局 */
-            grid-template-columns: repeat(9, 1fr);  /* 6列等宽网格 */
-            gap: 20px;                              /* 网格间距20px */
-            padding: 20px;                          /* 容器内边距 */
-            justify-items: center;                  /* 网格项水平居中 */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));  /* 响应式布局 */
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
         }
+
+        /* 电影专用样式 */
+        .movie-item {
+            width: 100%;                /* 容器宽度自适应 */
+            aspect-ratio: 1/1.5;        /* 电影海报比例 */
+            cursor: pointer;
+            position: relative;         /* 为图片定位准备 */
+            background: transparent !important;
+        }
+
+        .movie-item img {
+            position: absolute;         /* 绝对定位填充容器 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        /* 音乐保持原有样式 */
         .image-item {
-            width: 180px;               /* 固定宽度120px */
-            height: 180px;              /* 固定高度120px */
-            cursor: pointer;            /* 鼠标悬停手势 */
-            background: transparent !important;  /* 透明背景 */
+            width: 180px;               /* 固定宽度 */
+            height: 180px;              /* 固定高度 */
+            cursor: pointer;
+            background: transparent !important;
         }
+
         .image-item img {
-            width: 100%;                /* 图片占满容器宽度 */
-            height: 100%;               /* 图片占满容器高度 */
-            object-fit: cover;          /* 保持比例裁剪填充 */
-            border-radius: 6px;         /* 图片圆角 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
         }
         .info-modal {
             position: fixed;            /* 固定定位 */
@@ -136,5 +158,44 @@ function initStyles() {
     document.head.appendChild(style);
 }
 
-// 初始化
-initStyles();
+// 在loadContent函数中修改容器类名分配
+function loadContent(type) {
+    const jsonPath = `data/${type}/${type}.json`;
+    
+    fetch(jsonPath)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+            container.className = type === 'essays' ? 'essay-container' : 'gallery-container';
+            
+            // 随机排序数据
+            data.sort(() => Math.random() - 0.5);
+            
+            if (type === 'essays') {
+                data.forEach(essay => {
+                    const div = document.createElement('div');
+                    div.className = 'essay-item';
+                    div.innerHTML = `
+                        <h3>${essay.title || '无标题'}</h3>
+                        <div class="essay-date">${essay.date || '未知日期'}</div>
+                        <div class="essay-content">${essay.content || '暂无内容'}</div>
+                    `;
+                    container.appendChild(div);
+                });
+            } else {
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    // 根据类型使用不同类名
+                    div.className = type === 'movies' ? 'movie-item' : 'image-item';
+                    div.innerHTML = `<img src="data/${type}/${item.image}" alt="${item.title || '无标题'}">`;
+                    div.onclick = () => showItemInfo(item);
+                    container.appendChild(div);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('加载失败:', error);
+            document.getElementById('content').innerHTML = '<div class="error">数据加载失败</div>';
+        });
+}
