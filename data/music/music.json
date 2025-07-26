@@ -48,6 +48,118 @@
         "year": "1984",
         "description": "fuse",
         "image": "diamondlife.jpg"
+    },
+    {
+        "title": "The Shape of Punk to Come",
+        "author": "Refused",
+        "year": "1998",
+        "description": "brand new punk",
+        "image": "tsoptc.jpg"
+    },
+    {
+        "title": "Writer",
+        "author": "Carole King",
+        "year": "1970",
+        "description": "",
+        "image": "writer.jpg"
+    },
+    {
+        "title": "Fetch The Bolt Cutters",
+        "author": "Fiona Apple",
+        "year": "2020",
+        "description": "",
+        "image": "ftbc.jpg"
+    },
+    {
+        "title": "Language.Sex.Violence.Other?",
+        "author": "Stereophonics",
+        "year": "2005",
+        "description": "",
+        "image": "lsvo.jpg"
+    },
+    {
+        "title": "Delta",
+        "author": "Mumford & Sons",
+        "year": "2018",
+        "description": "",
+        "image": "delta.jpg"
+    },
+    {
+        "title": "The Black Parade",
+        "author": "My Chemical Romance",
+        "year": "2006",
+        "description": "",
+        "image": "tbp.jpg"
+    },
+    {
+        "title": "Title Tk",
+        "author": "The Breeders",
+        "year": "2002",
+        "description": "Favorite track:Off You",
+        "image": "tt.jpg"
+    },
+    {
+        "title": "Golden Hour",
+        "author": "Kacey Musgraves",
+        "year": "2018",
+        "description": "",
+        "image": "gh.jpg"
+    },
+    {
+        "title": "Tapestry",
+        "author": "Carole King",
+        "year": "1971",
+        "description": "",
+        "image": "tapestry.jpg"
+    },
+    {
+        "title": "Tidal",
+        "author": "Fiona Apple",
+        "year": "1996",
+        "description": "",
+        "image": "tidal.jpg"
+    },
+    {
+        "title": "Kill The Moonlight",
+        "author": "Spoon",
+        "year": "2002",
+        "description": "",
+        "image": "ktm.jpg"
+    },
+    {
+        "title": "the record",
+        "author": "boygenius",
+        "year": "2023",
+        "description": "",
+        "image": "therecord.jpg"
+    },
+    {
+        "title": "Contra",
+        "author": "Vampire Weekend",
+        "year": "2010",
+        "description": "",
+        "image": "contra.jpg"
+    },
+    {
+        "title": "Future Days",
+        "author": "Can",
+        "year": "1973",
+        "description": "",
+        "image": "futuredays.jpg"
+    },
+    {
+        "title": "The Joshua Tree",
+        "author": "U2",
+        "year": "1987",
+        "description": "",
+        "image": "tjt.jpg"
+    },
+    {
+        "title": "Ten",
+        "author": "Pearl Jam",
+        "year": "1991",
+        "description": "why why why",
+        "image": "ten.jpg"
     }
     
 ]
