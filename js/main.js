@@ -95,7 +95,7 @@ function initStyles() {
         }
         .gallery-container {
             display: grid;                          /* 网格布局 */
-            grid-template-columns: repeat(9, 1fr);  /* 6列等宽网格 */
+            grid-template-columns: repeat(12, 1fr);  /* 9列等宽网格 */
             gap: 20px;                              /* 网格间距20px */
             padding: 20px;                          /* 容器内边距 */
             justify-items: center;                  /* 网格项水平居中 */

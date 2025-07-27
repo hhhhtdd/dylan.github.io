@@ -160,6 +160,27 @@
         "year": "1991",
         "description": "why why why",
         "image": "ten.jpg"
+    },
+    {
+        "title": "Facw to Face",
+        "author": "The Kinks",
+        "year": "1966",
+        "description": "",
+        "image": "facetoface.jpg"
+    },
+    {
+        "title": "At Action Park",
+        "author": "Shellac",
+        "year": "1994",
+        "description": "",
+        "image": "aap.jpg"
+    },
+    {
+        "title": "Brilliant Corners",
+        "author": "Theloni0us Monk",
+        "year": "1957",
+        "description": "",
+        "image": "bc.jpg"
     }
     
 ]
